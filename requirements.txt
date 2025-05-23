@@ -10,3 +10,12 @@ PyJWT==2.9.0
 six==1.17.0
 sqlparse==0.5.3
 urllib3==2.4.0
+django>=5.0,<5.1
+djangorestframework
+django-cors-headers
+cloudinary
+django-cloudinary-storage
+python-dotenv
+dj-database-url
+psycopg2-binary
+gunicorn
