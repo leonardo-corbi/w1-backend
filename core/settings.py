@@ -141,7 +141,7 @@ REST_FRAMEWORK = {
 
 # CORS settings
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = ["https://w1-frontend.vercel.app/", 'w1-frontend.vercel.app/']
+CORS_ALLOW_ALL_ORIGINS = True
 
 # JWT settings
 SIMPLE_JWT = {
