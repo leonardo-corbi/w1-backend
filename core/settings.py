@@ -76,10 +76,17 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # Configuração do banco de dados usando dj_database_url para facilitar o uso de DATABASE_URL
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL'),
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': os.getenv('DATABASE_HOST'),
+        'PORT': os.getenv('DATABASE_PORT'),
+        'OPTIONS': {
+            'sslmode': os.getenv('DATABASE_SSLMODE'),
+        },
+    }
 }
 
 # Password validation
