@@ -104,10 +104,14 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
+# Static files (CSS, JavaScript, Images)    
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticCloudinaryStorage'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Media files (Uploaded files)
 MEDIA_URL = '/media/'
@@ -131,7 +135,7 @@ REST_FRAMEWORK = {
 
 # CORS settings
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', 'http://localhost:3000').split(',')
+CORS_ALLOWED_ORIGINS = "*"
 
 # JWT settings
 SIMPLE_JWT = {
