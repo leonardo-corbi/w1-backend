@@ -4,7 +4,6 @@ Django settings for core project.
 
 import os
 from pathlib import Path
-import dj_database_url
 import cloudinary
 from datetime import timedelta
 from dotenv import load_dotenv
