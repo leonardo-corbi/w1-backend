@@ -88,7 +88,24 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['nome', 'sobrenome', 'cpf', 'data_nascimento', 'telefone', 'cep', 'rua', 'numero', 'bairro', 'cidade', 'estado']
+    REQUIRED_FIELDS = [
+        'nome',
+        'sobrenome',
+        'telefone',
+        'cargo',
+        'cpf',
+        'data_nascimento',
+        'cep',
+        'rua',
+        'numero',
+        'bairro',
+        'cidade',
+        'estado',
+        'renda_mensal',
+        'tem_patrimonio',
+        'conhecimento_investimento',
+        'aceita_termos'
+    ]
 
     class Meta:
         verbose_name = 'Usuário',

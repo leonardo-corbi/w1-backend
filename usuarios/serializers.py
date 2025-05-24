@@ -14,9 +14,10 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = [
-            'id', 'email', 'nome', 'sobrenome', 'telefone', 'cpf', 'data_nascimento',
-            'cep', 'rua', 'numero', 'complemento', 'bairro', 'cidade', 'estado',
-            'renda_mensal', 'tem_patrimonio', 'conhecimento_investimento'
+            'id', 'nome', 'email', 'cpf', 'is_active', 'data_registro', 'tem_holding',
+            'sobrenome', 'telefone', 'data_nascimento', 'cep', 'rua', 'numero',
+            'complemento', 'bairro', 'cidade', 'estado', 'renda_mensal',
+            'tem_patrimonio', 'patrimonio', 'conhecimento_investimento', 'cargo', 'is_staff'
         ]
         read_only_fields = ['id']
 

@@ -1,6 +1,9 @@
+import uuid
 from rest_framework import generics, permissions
 from rest_framework.response import Response
+from rest_framework.exceptions import PermissionDenied
 from django.shortcuts import render
+from django.core.exceptions import ValidationError
 from .serializers import ObjetivoSerializer
 from .models import Objetivo
 
@@ -10,7 +13,24 @@ class ObjetivoListCreateView(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        return Objetivo.objects.filter(user_id=self.request.user)
+        user_id = self.request.query_params.get('user_id')
+        if user_id:
+            if not self.request.user.is_staff:
+                raise PermissionDenied("Apenas administradores podem acessar dados de outros usuários.")
+            try:
+                uuid_obj = uuid.UUID(user_id)
+                queryset = Objetivo.objects.filter(user_id=user_id)
+
+                return queryset
+            except (ValueError, ValidationError) as e:
+        
+                return Objetivo.objects.none()
+        queryset = Objetivo.objects.filter(user_id=self.request.user)
+
+        return queryset
+
+    def perform_create(self, serializer):
+        serializer.save(user_id=self.request.user)
     
 
 class ObjetivoDetailView(generics.RetrieveUpdateAPIView):  
